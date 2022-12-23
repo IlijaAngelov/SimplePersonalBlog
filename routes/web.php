@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Barryvdh\Debugbar\Facades\Debugbar;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ProfileController;
 
@@ -15,11 +16,18 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+// Route::get('/', function () {
+//     return view('index');
+// });
 
-Route::get('/create', [ArticleController::class, 'create'])->name('article.create');
+Route::resource('article', ArticleController::class);
+
+// Route::get('/', [ArticleController::class, 'index']);
+
+// Route::get('/article/create', [ArticleController::class, 'create'])->name('article.create');
+// Route::post('/article', [ArticleController::class, 'store'])->name('article.store');
+
+// Route::get('/article/show/{id}', [ArticleController::class, 'show'])->name('article.show');
 
 Route::get('/about', function () {
     return view('about');

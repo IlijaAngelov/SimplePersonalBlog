@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreArticleRequest;
 
 class ArticleController extends Controller
 {
@@ -14,7 +15,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+        $articles = Article::orderBy('id', 'desc')->get();
+        return view('index', compact('articles'));
     }
 
     /**
@@ -24,18 +26,19 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        return view('article.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\StoreArticleRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreArticleRequest $request)
     {
-        //
+        Article::create($request->validated());
+        return redirect('/article')->with('status', 'Article Created!');
     }
 
     /**
@@ -46,7 +49,9 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        //
+        return view('article.show', [
+            'article' => $article
+        ]);
     }
 
     /**
@@ -57,7 +62,9 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        return view('article.edit', [
+            'article' => $article
+        ]);
     }
 
     /**
@@ -67,9 +74,12 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Article $article)
+    public function update(StoreArticleRequest $request, Article $article)
     {
-        //
+        $update = $request->validated();
+        $updatedArticle = Article::create($update);
+        $updatedArticle->save();
+        return redirect('/article')->with('status', 'Article Updated!');
     }
 
     /**
@@ -80,6 +90,7 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        $article->delete();
+        return redirect('/article');
     }
 }
