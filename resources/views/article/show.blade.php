@@ -14,7 +14,7 @@
             <form action="POST" action={{ route('article.destroy', $article) }}>
                 @csrf
                 @method('DELETE')
-                <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>
+                <button type="submit" onclick="return confirm('Are you sure?')" class="h-10 px-6 font-semibold rounded-md bg-black text-white">Delete</button>
             </form>
         </ul>
     </article>
