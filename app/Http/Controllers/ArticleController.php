@@ -37,11 +37,15 @@ class ArticleController extends Controller
      */
     public function store(StoreArticleRequest $request)
     {
+        $imageName = uniqId() . '-' . $request->title . '.' . $request->image->getClientOriginalExtension();
+        $request->image->move(public_path('images'), $imageName);
+   
         Article::create([
             'title' => $request->title,
             'text'  => $request->text,
-            'image' => $this->storeImage($request)
+            'image' => $imageName
         ]);
+
         return redirect('/article')->with('status', 'Article Created!');
     }
 
@@ -98,9 +102,4 @@ class ArticleController extends Controller
         return redirect('/article');
     }
 
-    private function storeImage($request)
-    {
-        $imgName = uniqId() . '-' . $request->title . '.' . $request->image->getClientOriginalExtension();
-        return $request->image->move(public_path('images'), $imgName);
-    }
 }
