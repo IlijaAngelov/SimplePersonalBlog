@@ -37,7 +37,11 @@ class ArticleController extends Controller
      */
     public function store(StoreArticleRequest $request)
     {
-        Article::create($request->validated());
+        Article::create([
+            'title' => $request->title,
+            'text'  => $request->text,
+            'image' => $this->storeImage($request)
+        ]);
         return redirect('/article')->with('status', 'Article Created!');
     }
 
@@ -92,5 +96,11 @@ class ArticleController extends Controller
     {
         $article->delete();
         return redirect('/article');
+    }
+
+    private function storeImage($request)
+    {
+        $imgName = uniqId() . '-' . $request->title . '.' . $request->image->getClientOriginalExtension();
+        return $request->image->move(public_path('images'), $imgName);
     }
 }

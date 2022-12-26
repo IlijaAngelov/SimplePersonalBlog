@@ -3,19 +3,19 @@
 @include('layouts.nav')
 
 <body>
-    {{-- <form action="{{ route('article.index') }}" method="POST">
-    @csrf
-    <label for="title">Enter Title for the Article</label>
-    <input id="title" type="text" class="@error('title') @enderror">
-
-    <label for="text">Enter Text for the Article</label>
-    <input id="text" type="text" class="@error('text') @enderror">
-
-    <button type="submit">Submit</button>
-    </form> --}}
-
-
-    <form action="{{ route('article.store') }}" method="POST" class="w-full max-w-sm">
+    @if($errors->any())
+    <div class="bg-red-500">
+        Something went wrong...
+    </div>
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>
+                {{ $error }}
+            </li>
+        @endforeach
+    </ul>
+    @endif
+    <form action="{{ route('article.store') }}" method="POST" enctype="multipart/form-data" class="w-full max-w-sm">
         @csrf
         <div class="md:flex md:items-center mb-6">
             <div class="md:w-1/3">
@@ -35,28 +35,18 @@
             <div class="mb-3 xl:w-96">
                 <label for="exampleFormControlTextarea1" class="form-label inline-block mb-2 text-gray-700">Article
                     textarea</label>
-                <textarea class="
-                  form-control
-                  block
-                  w-full
-                  px-3
-                  py-1.5
-                  text-base
-                  font-normal
-                  text-gray-700
-                  bg-white bg-clip-padding
-                  border border-solid border-gray-300
-                  rounded
-                  transition
-                  ease-in-out
-                  m-0
-                  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
-                " id="text" name="text" rows="3" placeholder="Your message"
+                <textarea class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding
+                  border border-solid border-gray-300 rounded transition ease-in-out m-0
+                  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" 
+                  id="text" name="text" rows="3" placeholder="Your message"
                     value="{{ old('text') }}"></textarea>
             </div>
         </div>
 
-        <div class="md:flex md:items-center">
+        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="image">Upload file</label>
+        <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="image" name="image" type="file">
+
+        <div class="md:flex md:items-center pt-3">
             <div class="md:w-1/3"></div>
             <div class="md:w-2/3">
                 <button

@@ -2,7 +2,7 @@
 
 @include('layouts.nav')
 
-<form action="{{ route('article.update', $article) }}" method="POST" class="w-full max-w-sm">
+<form action="{{ route('article.update', $article) }}" method="POST" enctype="multipart/form-data" class="w-full max-w-sm">
     @csrf
     @method('PUT')
     <div class="md:flex md:items-center mb-6">

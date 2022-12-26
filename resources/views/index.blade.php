@@ -16,7 +16,7 @@
             {{-- <li>{{ $article->title }}</li> --}}
             <li><b>Title:</b> <a href="{{ route('article.show', $article) }}"> {{ $article->title }}</a></li>
             <li>Text:{{ $article->text }}</li>
-            <li>Image: {{ $article->image_path }}</li>
+            <li>Image: {{ $article->image }}</li>
         </ul>
     </article>
     @endforeach

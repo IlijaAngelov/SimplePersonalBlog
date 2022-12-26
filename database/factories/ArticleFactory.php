@@ -19,7 +19,7 @@ class ArticleFactory extends Factory
         return [
             'title' => $this->faker->sentence(3),
             'text' => $this->faker->text,
-            'image_path' => $this->faker->imageUrl(640, 640),
+            'image' => $this->faker->imageUrl(640, 640),
         ];
     }
 }
