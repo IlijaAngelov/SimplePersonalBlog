@@ -30,7 +30,7 @@ class StoreArticleRequest extends FormRequest
         ];
     }
 
-    public function message()
+    public function messages()
     {
         return [
             'title.required' => 'A title is required',
