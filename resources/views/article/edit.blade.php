@@ -2,9 +2,22 @@
 
 @include('layouts.nav')
 
+@if($errors->any())
+    <div class="bg-red-500">
+        Something went wrong...
+    </div>
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>
+                {{ $error }}
+            </li>
+        @endforeach
+    </ul>
+@endif
+
 <form action="{{ route('article.update', $article) }}" method="POST" enctype="multipart/form-data" class="w-full max-w-sm">
     @csrf
-    @method('PUT')
+    @method('PATCH')
     <div class="md:flex md:items-center mb-6">
         <div class="md:w-1/3">
             <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
@@ -14,7 +27,7 @@
         <div class="md:w-2/3">
             <input
                 class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                id="title" type="text" name="title" placeholder="Your Title" value="{{ $article->title }}">
+                id="title" type="text" name="title" value="{{ $article->title }}">
         </div>
     </div>
 
@@ -39,10 +52,12 @@
               ease-in-out
               m-0
               focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
-            " id="text" name="text" rows="3" placeholder="{{ $article->text }}"></textarea>
+            " id="text" name="text" rows="3">{{ $article->text }}</textarea>
         </div>
     </div>
 
+    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="image">Upload file</label>
+    <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="image" name="image" type="file">
     <div class="md:flex md:items-center">
         <div class="md:w-1/3"></div>
         <div class="md:w-2/3">

@@ -23,11 +23,18 @@ class StoreArticleRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'title' => 'required|unique:articles|max:255',
+        
+        $rules = [
+            'title' => 'required|max:255',
             'text' => 'required',
             'image' => ['image', 'mimes:png,jpg,jpeg', 'max:5048']
         ];
+
+        if($this->isMethod('POST')){
+            $rules['title'] = ['unique:articles'];
+        }
+
+        return $rules;
     }
 
     public function messages()

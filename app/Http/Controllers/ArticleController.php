@@ -84,9 +84,8 @@ class ArticleController extends Controller
      */
     public function update(StoreArticleRequest $request, Article $article)
     {
-        $update = $request->validated();
-        $updatedArticle = Article::create($update);
-        $updatedArticle->save();
+        $updatedArticle = $request->validated();
+        Article::where('id', $article->id)->update($updatedArticle);
         return redirect('/article')->with('status', 'Article Updated!');
     }
 
