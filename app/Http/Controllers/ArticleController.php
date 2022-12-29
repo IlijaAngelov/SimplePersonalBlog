@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreArticleRequest;
 
 class ArticleController extends Controller
@@ -37,9 +39,12 @@ class ArticleController extends Controller
      */
     public function store(StoreArticleRequest $request)
     {
-        $imageName = uniqId() . '-' . $request->title . '.' . $request->image->getClientOriginalExtension();
-        $request->image->move(public_path('images'), $imageName);
-   
+        if($request->image != null) {
+            $imageName = uniqId() . '-' . $request->title . '.' . $request->image->getClientOriginalExtension();
+            $request->image->move(public_path('images'), $imageName);
+        } else {
+            $imageName = null;
+        }
         Article::create([
             'title' => $request->title,
             'text'  => $request->text,
@@ -85,7 +90,24 @@ class ArticleController extends Controller
     public function update(StoreArticleRequest $request, Article $article)
     {
         $updatedArticle = $request->validated();
-        Article::where('id', $article->id)->update($updatedArticle);
+
+        if(File::exists(public_path('images/'.$article->image))){
+            File::delete(public_path('images/'.$article->image));
+        }
+
+        if($request->image != null) {
+            $imageName = uniqId() . '-' . $request->title . '.' . $request->image->getClientOriginalExtension();
+            $request->image->move(public_path('images'), $imageName);
+        } else {
+            $imageName = null;
+        }
+
+        Article::where('id', $article->id)->update([
+            'title' => $updatedArticle['title'],
+            'text'  => $updatedArticle['text'],
+            'image' => $imageName
+        ]);
+
         return redirect('/article')->with('status', 'Article Updated!');
     }
 
