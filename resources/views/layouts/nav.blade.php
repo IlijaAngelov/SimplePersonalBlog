@@ -28,19 +28,39 @@
                         src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
                 </div>
                 <div class="hidden sm:ml-6 sm:block">
-                    <div class="flex space-x-4">
+                    <div class="flex space-x-4 px-3 py-3">
                         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                        <a href="{{ route('article.index') }}" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
+                        <a href="{{ route('article.index') }}" class="bg-gray-900 text-white  rounded-md text-sm font-medium"
                             aria-current="page">Home</a>
 
+                        @if(Auth::check())
                         <a href="{{ route('article.create') }}"
-                            class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Create
+                            class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md text-sm font-medium">Create
                             Article</a>
-
+                        <a href=""
+                            class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md text-sm font-medium">Create
+                            Category</a>
+                        <a href=""
+                            class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md text-sm font-medium">Create
+                            Tag</a>
+                        @endif
                         <a href="{{ route('about') }}"
-                            class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
+                            class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md text-sm font-medium">About</a>
                     </div>
                 </div>
+                @if(Auth::check())
+                <div class="flex text-white px-3 py-2.5 ml-auto">
+                    <div>
+                        {{ Auth::user()->name; }}
+                    </div>
+                </div>
+                @elseif (Auth::guest())
+                    <div class="flex text-white px-3 py-2.5 ml-auto">
+                        <div>
+                            <a href="/dashboard" class="href">Login</a>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
@@ -52,13 +72,32 @@
             <a href="{{ route('article.index') }}" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
                 aria-current="page">Home</a>
 
+            @if(Auth::check())
             <a href="{{ route('article.create') }}"
                 class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Create
                 Article</a>
-
+            <a href=""
+                class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md text-sm font-medium">Create
+                Category</a>
+            <a href=""
+                class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md text-sm font-medium">Create
+                Tag</a>
+            @endif
             <a href="{{ route('about') }}"
                 class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">About</a>
-
+            @if(Auth::check())
+                <div class="flex text-white px-3 py-2.5 ml-auto">
+                    <div>
+                        {{ Auth::user()->name; }}
+                    </div>
+                </div>
+                @elseif (Auth::guest())
+                    <div class="flex text-white px-3 py-2.5 ml-auto">
+                        <div>
+                            <a href="/dashboard" class="href">Login</a>
+                        </div>
+                    </div>
+            @endif
         </div>
     </div>
 </nav>
