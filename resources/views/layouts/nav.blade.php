@@ -37,7 +37,7 @@
                         <a href="{{ route('article.create') }}"
                             class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md text-sm font-medium">Create
                             Article</a>
-                        <a href=""
+                        <a href="{{ route('category.create') }}"
                             class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md text-sm font-medium">Create
                             Category</a>
                         <a href=""

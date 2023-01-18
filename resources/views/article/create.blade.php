@@ -15,7 +15,7 @@
         @endforeach
     </ul>
     @endif
-    <form action="{{ route('article.store') }}" method="POST" enctype="multipart/form-data" class="w-full max-w-sm">
+    <form action="{{ route('article.store') }}" method="POST" enctype="multipart/form-data" class="flex flex-col justify-center items-center pt-5">
         @csrf
         <div class="md:flex md:items-center mb-6">
             <div class="md:w-1/3">
@@ -44,7 +44,7 @@
         </div>
 
         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="image">Upload file</label>
-        <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="image" name="image" type="file">
+        <input class="block text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="image" name="image" type="file">
 
         <div class="md:flex md:items-center pt-3">
             <div class="md:w-1/3"></div>

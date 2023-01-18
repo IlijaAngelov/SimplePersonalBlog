@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,8 @@ use App\Http\Controllers\ProfileController;
 Route::resource('article', ArticleController::class)->middleware('auth');
 
 Route::get('/', [ArticleController::class, 'index'])->name('index');
+
+Route::resource('category', CategoryController::class)->middleware('auth');
 
 Route::get('/about', function () {
     return view('about');
