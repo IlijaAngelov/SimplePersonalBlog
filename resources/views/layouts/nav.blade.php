@@ -44,6 +44,8 @@
                             class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md text-sm font-medium">Create
                             Tag</a>
                         @endif
+                        <a href="{{ route('category.index') }}"
+                            class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md text-sm font-medium">Show Categories</a>
                         <a href="{{ route('about') }}"
                             class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md text-sm font-medium">About</a>
                     </div>

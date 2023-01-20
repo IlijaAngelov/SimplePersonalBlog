@@ -51,7 +51,7 @@ class ArticleController extends Controller
             'image' => $imageName
         ]);
 
-        return redirect('/article')->with('status', 'Article Created!');
+        return redirect('/')->with('status', 'Article Created!');
     }
 
     /**
