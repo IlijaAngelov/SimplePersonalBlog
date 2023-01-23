@@ -8,6 +8,7 @@
         <ul class="h-56 grid grid-rows-3 gap-4 justify-items-start content-start p-5">
             <li>Id: {{ $article->id }}</li>
             <li>Title: {{ $article->title }}</li>
+            <li>Category: {{ $article->category->name }}</li>
             <li>Text: {{ $article->text }}</li>
             <li>Image: {{ $article->image }}</li>
             <li><a href="{{ route('article.edit', $article) }}" class="px-6 py-3 font-semibold text-white no-underline bg-blue-500 rounded hover:bg-blue-600 hover:underline ">Edit</a></li>

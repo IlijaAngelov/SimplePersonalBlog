@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Article extends Model
 {
@@ -14,4 +15,9 @@ class Article extends Model
         'text',
         'image'
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
