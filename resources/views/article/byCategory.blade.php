@@ -2,13 +2,7 @@
     
 @include('layouts.nav')
 
-@if (session('status'))
-    <div class="alert alert-success">
-        {{ session('status') }}
-    </div>
-@endif
-
-<div class="grid grid-cols-3 m-2 p-5 items-center h-56 text-center">
+<div class="grid m-2 p-5 items-center h-56 text-center">
     @foreach ($articles as $article)
         <div class="flex justify-center w-auto m-2 border rounded-lg p-2">
             <ul class="">

@@ -17,9 +17,11 @@ use App\Http\Controllers\CategoryController;
 |
 */
 
-Route::resource('article', ArticleController::class)->middleware('auth');
-
 Route::get('/', [ArticleController::class, 'index'])->name('index');
+
+Route::get('/categories/{article}', [ArticleController::class, 'filterByCategory'])->name('categories');
+
+Route::resource('article', ArticleController::class)->middleware('auth');
 
 Route::resource('category', CategoryController::class)->middleware('auth');
 

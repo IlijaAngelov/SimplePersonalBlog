@@ -16,7 +16,7 @@
             @foreach ($categories as $category)
             <tr>
                 <td>{{ $category->id }}</td>
-                <td>{{ $category->category_name }}</td>
+                <td>{{ $category->name }}</td>
                 <td><a href="{{ route('category.edit', $category) }}"
                         class="px-6 py-3 font-semibold text-white no-underline bg-blue-500 rounded hover:bg-blue-600 hover:underline ">Edit</a>
                 </td>
@@ -28,10 +28,9 @@
                             class="h-10 px-6 font-semibold rounded bg-black text-white hover:bg-slate-800 hover:underline">Delete</button>
                     </form>
                 </td>
-
             </tr>
+            @endforeach
         </tbody>
-        @endforeach
     </table>
 </div>
 
