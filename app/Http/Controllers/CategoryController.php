@@ -99,4 +99,11 @@ class CategoryController extends Controller
         $category->delete();
         return redirect('/');
     }
+
+    public function filterByCategory(Category $category)
+    {
+        return view('article.byCategory', [
+            'articles' => $category->articles
+        ]);
+    }
 }

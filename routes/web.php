@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use App\Http\Controllers\ArticleController;
@@ -19,7 +20,7 @@ use App\Http\Controllers\CategoryController;
 
 Route::get('/', [ArticleController::class, 'index'])->name('index');
 
-Route::get('/categories/{article}', [ArticleController::class, 'filterByCategory'])->name('categories');
+Route::get('/categories/{category:name}', [CategoryController::class, 'filterByCategory'])->name('categories');
 
 Route::resource('article', ArticleController::class)->middleware('auth');
 

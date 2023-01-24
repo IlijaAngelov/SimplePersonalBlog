@@ -123,12 +123,4 @@ class ArticleController extends Controller
         return redirect('/article');
     }
 
-    public function filterByCategory(Article $article)
-    {
-        $filteredArticles = Article::where('category_id', $article->category_id)->get();
-        return view('article.byCategory', [
-            'articles' => $filteredArticles 
-        ]);
-    }
-
 }
