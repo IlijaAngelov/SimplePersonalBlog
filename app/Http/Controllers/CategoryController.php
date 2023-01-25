@@ -103,7 +103,7 @@ class CategoryController extends Controller
     public function filterByCategory(Category $category)
     {
         return view('article.byCategory', [
-            'articles' => $category->articles
+            'articles' => $category->articles->load(['category'])
         ]);
     }
 }
