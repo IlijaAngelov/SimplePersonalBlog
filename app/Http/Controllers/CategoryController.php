@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreCategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -35,13 +36,9 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCategoryRequest $request)
     {
-
-        Category::create([
-            'category_name' => $request->category_name
-        ]);
-
+        Category::create($request->validated());
         return redirect('/')->with('status', 'New Category Created!');
 
     }
@@ -79,10 +76,10 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(StoreCategoryRequest $request, Category $category)
     {
         Category::where('id', $category->id)->update([
-            'category_name' => $request->category_name
+            'name' => $request->name
         ]);
 
         return redirect('/')->with('status', 'Category Updated!');
