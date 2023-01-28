@@ -2,6 +2,7 @@
 
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TagController;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ProfileController;
@@ -25,6 +26,8 @@ Route::get('/categories/{category:name}', [CategoryController::class, 'filterByC
 Route::resource('article', ArticleController::class)->middleware('auth');
 
 Route::resource('category', CategoryController::class)->middleware('auth');
+
+Route::resource('tag', TagController::class)->middleware('auth');
 
 Route::get('/about', function () {
     return view('about');

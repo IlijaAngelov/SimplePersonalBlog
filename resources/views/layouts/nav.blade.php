@@ -40,7 +40,7 @@
                         <a href="{{ route('category.create') }}"
                             class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md text-sm font-medium">Create
                             Category</a>
-                        <a href=""
+                        <a href="{{ route('tag.create') }}"
                             class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md text-sm font-medium">Create
                             Tag</a>
                         @endif
@@ -78,10 +78,10 @@
             <a href="{{ route('article.create') }}"
                 class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Create
                 Article</a>
-            <a href=""
+            <a href="{{ route('category.create') }}"
                 class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md text-sm font-medium">Create
                 Category</a>
-            <a href=""
+            <a href="{{ route('tag.create') }}"
                 class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md text-sm font-medium">Create
                 Tag</a>
             @endif
