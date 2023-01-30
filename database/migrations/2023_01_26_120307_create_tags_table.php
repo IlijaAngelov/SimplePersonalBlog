@@ -15,10 +15,20 @@ return new class extends Migration
     {
         Schema::create('tags', function (Blueprint $table) {
             $table->id('id');
-            $table->foreignId('article_id');
-            $table->string('tag');
+//            $table->foreignId('article_id');
+            $table->string('name');
             $table->timestamps();
         });
+
+        Schema::create('article_tag', function (Blueprint $table) {
+            $table->id('id');
+            $table->foreignId('article_id')->references('id')->on('articles')->onDelete('cascade');
+            $table->foreignId('tag_id')->references('id')->on('tags')->onDelete('cascade');
+            $table->timestamps();
+
+            $table->unique(['article_id', 'tag_id']);
+        });
+
     }
 
     /**
