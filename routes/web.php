@@ -27,6 +27,8 @@ Route::resource('article', ArticleController::class)->middleware('auth');
 
 Route::resource('category', CategoryController::class)->middleware('auth');
 
+Route::get('/tags/{tag:name}', [TagController::class, 'filterByTag'])->name('tags');
+
 Route::resource('tag', TagController::class)->middleware('auth');
 
 Route::get('/about', function () {
