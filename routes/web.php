@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
 use Barryvdh\Debugbar\Facades\Debugbar;
@@ -30,6 +32,12 @@ Route::resource('category', CategoryController::class)->middleware('auth');
 Route::get('/tags/{tag:name}', [TagController::class, 'filterByTag'])->name('tags');
 
 Route::resource('tag', TagController::class)->middleware('auth');
+
+Route::get('authors/{author:name}', function (User $author) {
+    return view('index', [
+        'articles' => $author->articles
+    ]);
+});
 
 Route::get('/about', function () {
     return view('about');

@@ -53,7 +53,7 @@
                 @if(Auth::check())
                 <div class="flex text-white px-3 py-2.5 ml-auto">
                     <div>
-                        {{ Auth::user()->name; }}
+                        {{ Auth::user()->name }}
                     </div>
                 </div>
                 @elseif (Auth::guest())
@@ -90,7 +90,7 @@
             @if(Auth::check())
                 <div class="flex text-white px-3 py-2.5 ml-auto">
                     <div>
-                        {{ Auth::user()->name; }}
+                        {{ Auth::user()->name }}
                     </div>
                 </div>
                 @elseif (Auth::guest())

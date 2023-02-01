@@ -13,7 +13,7 @@
         <div class="flex justify-center h-56 min-h-full w-auto m-2 border rounded-lg p-2">
             <ul class="">
                 <li class="text-2xl font-black leading-5 hover:underline p-2"><a href="{{ route('article.show', $article) }}"><h1>{{ $article->title }}</h1></a></li>
-                <li class="text-2xl font-black leading-5 hover:underline p-2"><a href="#"><h1>By Author: {{ $article->author->name }}</h1></a></li>
+                <li class="text-2xl font-black leading-5 hover:underline p-2"><a href="/authors/{{$article->author->name}}"><h1>By Author: {{ $article->author->name }}</h1></a></li>
                 @foreach($article->tags as $tag)
                     <p class="inline-flex text font-black p-2 bg-blue-500 hover:bg-blue-300 border rounded-md"><a href="{{ route('tags', $tag->name) }}">{{ $tag->name }}</a></p>
                 @endforeach
