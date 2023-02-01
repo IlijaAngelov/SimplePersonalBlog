@@ -35,7 +35,7 @@ Route::resource('tag', TagController::class)->middleware('auth');
 
 Route::get('authors/{author:name}', function (User $author) {
     return view('index', [
-        'articles' => $author->articles
+        'articles' => $author->articles->load('author', 'category')
     ]);
 });
 
