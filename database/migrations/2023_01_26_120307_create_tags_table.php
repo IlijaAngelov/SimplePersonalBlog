@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('tags', function (Blueprint $table) {
             $table->id('id');
-//            $table->foreignId('article_id');
             $table->string('name');
             $table->timestamps();
         });
@@ -26,7 +25,7 @@ return new class extends Migration
             $table->foreignId('tag_id')->references('id')->on('tags')->onDelete('cascade');
             $table->timestamps();
 
-            $table->unique(['article_id', 'tag_id']);
+//            $table->unique(['article_id', 'tag_id']);
         });
 
     }
